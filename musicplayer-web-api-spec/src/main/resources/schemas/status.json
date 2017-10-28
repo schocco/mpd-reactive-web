@@ -1,0 +1,46 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "required": false,
+  "properties": {
+    "volume": {
+      "type": "integer"
+    },
+    "repeat": {
+      "type": "boolean"
+    },
+    "random": {
+      "type": "boolean"
+    },
+    "single": {
+      "type": "boolean"
+    },
+    "consume": {
+      "type": "boolean"
+    },
+    "playlist": {
+      "type": "integer"
+    },
+    "playlistLength": {
+      "type": "integer"
+    },
+    "playerState": {
+      "type": "string",
+        "enum": [
+          "STOP",
+          "PAUSE",
+          "PLAY"
+      ]
+    }
+  },
+  "required": [
+    "playlistLength",
+    "playlist",
+    "repeat",
+    "consume",
+    "random",
+    "volume",
+    "single",
+    "playerState"
+]
+}

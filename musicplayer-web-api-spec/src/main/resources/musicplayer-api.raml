@@ -1,0 +1,97 @@
+#%RAML 0.8
+---
+title: Musicplayer API
+version: v1
+baseUri: http://localhost:8080/api/{version}
+mediaType: application/json
+documentation:
+ - title: Home
+   content: !include docs/overview.md
+schemas:
+  - song: !include schemas/song.json
+  - status: !include schemas/status.json
+  - playlist: !include schemas/playlist.json
+  - playlist.put: !include schemas/playlist.put.json
+
+traits: !include traits.yaml
+
+resourceTypes:
+  - readOnlyCollection:
+      description: Collection of <<resourcePathName>>
+      get:
+        description: Get a list of <<resourcePathName>>.
+        responses:
+          200:
+            description: |
+              Succesfully retrieved resource
+            body:
+              application/json:
+                schema: |
+                  <<schema>>
+  - playbackControll:
+      post:
+        description: execute the command
+        body:
+          application/json: !!null
+        responses:
+          204:
+            description: |
+              Succesfully fulfilled the request
+/status:
+  description: status of the player
+  get:
+    description: |
+      Retrieve resource
+    responses:
+      200:
+        description: |
+          Succesfully retrieved resource
+        body:
+          application/json:
+            schema: status
+/songs:
+  type:
+    readOnlyCollection:
+      schema: !include schemas/songs.json
+  /current:
+    description: the currently selected song
+    get:
+      description: get the currently selected song
+      responses:
+        200:
+          description: dsfsdf
+          body:
+            application/json:
+              schema: song
+/playlists:
+  description: playlists
+  get:
+    description: list available playlists
+    responses:
+      200:
+        description: success
+        body:
+          application/json:
+            schema: playlist
+  /current:
+    description: the currently active playlist
+    put:
+      description: load a playlist
+      body:
+        application/json:
+          schema: playlist.put
+      responses:
+        204:
+          description: successfully loaded playlist
+/pause:
+  description: pause command
+  type: playbackControll
+/play:
+  description: play command
+  type: playbackControll
+/previous:
+  description: play previous song
+  type: playbackControll
+/next:
+  description: play next song
+  type: playbackControll

@@ -1,0 +1,45 @@
+{
+  "type": "object",
+  "$schema": "http://json-schema.org/draft-03/schema",
+  "id": "http://jsonschema.net",
+  "required": false,
+  "properties": {
+    "id": {
+      "type": "number",
+      "required": true
+    },
+    "position": {
+      "type": "number",
+      "required": true
+    },
+    "lastModified": {
+      "type": "string",
+      "format": "date-time",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "artist": {
+      "type": "string",
+      "required": true
+    },
+    "album": {
+      "type": "string"
+    },
+    "trackNumber": {
+      "type": "string"
+    },
+    "year": {
+      "type": "number"
+    },
+    "genre": {
+      "type": "string"
+    },
+    "length": {
+      "type": "number",
+      "required": true
+    }
+  }
+}
